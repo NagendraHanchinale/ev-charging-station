@@ -1,0 +1,45 @@
+# Node dependencies
+node_modules/
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native build artifacts and secrets
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro bundler
+.metro-health-check*
+
+# Debug logs
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# macOS system files
+.DS_Store
+
+# Certificates
+*.pem
+
+# Local environment files
+# Environment files
+.env
+.env.*
+server/.env
+server/.env.*
+auth-service/.env
+auth-service/.env.*
+dummy-bpp/.env
+dummy-bpp/.env.*
+
+
+# TypeScript build info
+*.tsbuildinfo
