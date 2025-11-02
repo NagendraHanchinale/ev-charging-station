@@ -12,6 +12,8 @@ const router = express.Router();
 //   try {
 //     const stations = await Station.find();
 //     for (const station of stations) {
+
+
 //       for (const point of station.chargingPoints) {
 //         point.slots = [];
 //       }
@@ -78,7 +80,7 @@ router.get('/combinedStations', async (req, res) => {
         const mongoStations = await Station.find();
 
         // Fetch stations from the external API
-        const result = await axios.get('http://10.101.230.244:4001/stations', {
+        const result = await axios.get('http://10.228.228.244:4001/stations', {
             headers: {
                 'Content-Type': 'application/json'
             }

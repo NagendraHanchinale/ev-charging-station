@@ -32,7 +32,7 @@ const MyAccount = () => {
       }
 
       const response = await fetch(
-        `http://10.101.230.244:5000/api/auth/user/${userId}`,
+        `http://10.228.228.244:5000/api/auth/user/${userId}`,
         {
           method: "GET",
           headers: {

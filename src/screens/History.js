@@ -15,7 +15,7 @@ const History = () => {
   const [loading, setLoading] = useState(true);
   const [expandedIds, setExpandedIds] = useState({}); // Track expanded items by transactionId
 
-  const BAP_SERVER_URL = 'http://10.101.230.244:5000/beckn';
+  const BAP_SERVER_URL = 'http://10.228.228.244:5000/beckn';
 
   useEffect(() => {
     const loadUserAndTransactions = async () => {

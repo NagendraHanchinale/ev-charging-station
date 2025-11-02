@@ -19,7 +19,7 @@ const ResetPassword = () => {
         return;
       }
 
-      const response = await fetch("http://10.101.230.244:5000/api/auth/reset-password", {
+      const response = await fetch("http://10.228.228.244:5000/api/auth/reset-password", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

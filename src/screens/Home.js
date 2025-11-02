@@ -52,7 +52,7 @@ const Home = ({ navigation }) => {
 
         if (!token || !userId) return;
 
-        const response = await fetch(`http://10.101.230.244:5000/api/auth/user/${userId}`, {
+        const response = await fetch(`http://10.228.228.244:5000/api/auth/user/${userId}`, {
           method: 'GET',
           headers: {
             Authorization: `Bearer ${token}`,

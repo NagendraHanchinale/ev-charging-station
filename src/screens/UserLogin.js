@@ -16,7 +16,7 @@ const UserLogin = ({ navigation }) => {
     }
 
     try {
-      const response = await fetch('http://10.101.230.244:5000/api/auth/login', {
+      const response = await fetch('http://10.228.228.244:5000/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

@@ -1,7 +1,7 @@
 // src/api/bapApi.js
 import axios from 'axios';
 
-const BASE_URL = 'http://10.101.230.244:5000/beckn'; // ✅ Your BAP server
+const BASE_URL = 'http://10.228.228.244:5000/beckn'; // ✅ Your BAP server
 
 export const searchStations = async (searchParams) => {
     const response = await axios.post(`${BASE_URL}/search`, searchParams);

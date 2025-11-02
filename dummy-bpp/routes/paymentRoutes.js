@@ -188,7 +188,7 @@ router.post('/confirm-bill', async (req, res) => {
     console.log('Confirmed Transaction:', transaction);
 
     // ✅ Send to BAP
-    const bapUrl = process.env.BAP_URL || 'http://10.101.230.244:5000/beckn/transactions'; // fallback URL
+    const bapUrl = process.env.BAP_URL || 'http://10.228.228.244:5000/beckn/transactions'; // fallback URL
     try {
       const bapResponse = await axios.post(bapUrl, transaction);
       console.log('✅ Sent to BAP:', bapResponse.data);

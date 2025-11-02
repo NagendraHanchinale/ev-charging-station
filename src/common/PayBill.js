@@ -45,7 +45,7 @@ const PayBill = ({
       };
 
       const response = await axios.post(
-        'http://10.101.230.244:5000/beckn/initiate-payment',
+        'http://10.228.228.244:5000/beckn/initiate-payment',
         payload
       );
 
@@ -86,7 +86,7 @@ const PayBill = ({
       const payload = { transactionId };
 
       const response = await axios.post(
-        'http://10.101.230.244:5000/beckn/confirm-payment',
+        'http://10.228.228.244:5000/beckn/confirm-payment',
         payload
       );
 

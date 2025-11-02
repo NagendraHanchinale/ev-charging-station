@@ -54,7 +54,7 @@ router.post("/confirm", async (req, res) => {
 
     const signed = signPayload(bookingPayload);
 
-    await axios.post("http://10.101.230.244:5000/beckn/on_confirm", {
+    await axios.post("http://10.228.228.244:5000/beckn/on_confirm", {
       context: {
         ...context,
         action: "on_confirm",

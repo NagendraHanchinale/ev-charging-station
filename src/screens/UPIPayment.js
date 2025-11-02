@@ -70,7 +70,7 @@ const UPIPayment = ({ amount }) => {
     }
 
     try {
-      const response = await fetch('http://10.101.230.244:5000/verify-transaction', {
+      const response = await fetch('http://10.228.228.244:5000/verify-transaction', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ transactionId }),

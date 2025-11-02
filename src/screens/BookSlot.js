@@ -15,8 +15,9 @@ import TimeSelector from '../common/TimeSelector';
 import io from 'socket.io-client';
 import axios from 'axios';
 import Header2 from '../common/Header2';
+import RazorpayCheckout from 'react-native-razorpay';
 
-const socket = io("http://10.101.230.244:5000");
+const socket = io("http://10.228.228.244:5000");
 
 const BookSlot = ({ route }) => {
   const { stationId } = route.params;
@@ -45,6 +46,53 @@ const BookSlot = ({ route }) => {
   const [showConfirm, setShowConfirm] = useState(false);
 
   const [transactionId, setTransactionId] = useState(null);
+
+  // new Update
+
+let razor_Key_ID = process.env.RAZORPAY_KEY_ID;  // Public test key
+console.log(razor_Key_ID);
+// Don't use secret key in frontend
+
+const handlePayment = async () => {
+  try {
+    const options = {
+      description: 'EV Slot Booking Payment',
+      image: 'https://i.imgur.com/3g7nmJC.jpg',
+      currency: 'INR',
+      key: 'rzp_test_Rapcm0U86hOyPt', // Your Razorpay test key
+      amount: 5000, // Amount in paisa (₹50.00)
+      name: 'EV Charging Station',
+      order_id: '1', // dummy ID for test
+      prefill: {
+        email: 'nagendra@example.com',
+        contact: '9876543210',
+        name: 'Nagendra Hanchinale',
+      },
+      theme: { color: '#53a20e' },
+    };
+    console.log(options)
+
+    RazorpayCheckout.open(options)
+      .then((data) => {
+        // Payment Success
+        Alert.alert('Payment Successful', `Payment ID: ${data.razorpay_payment_id}`);
+      })
+      .catch((error) => {
+        // Payment Failed
+        Alert.alert('Payment Failed', `Error: ${error || 'Something went wrongs'}`);
+      });
+
+  } catch (err) {
+    console.error('Payment Error:', err);
+    Alert.alert('Error', 'Unable to process payment');
+  }
+};
+
+
+
+
+
+  //new update
 
   useEffect(() => {
     socket.on('billAmountUpdate', (data) => {
@@ -76,7 +124,7 @@ const BookSlot = ({ route }) => {
         return;
       }
 
-      const response = await fetch(`http://10.101.230.244:5000/api/auth/user/${storedUserId}`, {
+      const response = await fetch(`http://10.228.228.244:5000/api/auth/user/${storedUserId}`, {
         headers: { Authorization: `Bearer ${token}` }
       });
 
@@ -91,7 +139,7 @@ const BookSlot = ({ route }) => {
 
   const fetchChargingPoints = async () => {
     try {
-      const res = await fetch(`http://10.101.230.244:5000/beckn/selectone/${stationId}`);
+      const res = await fetch(`http://10.228.228.244:5000/beckn/selectone/${stationId}`);
       const data = await res.json();
       const points = data.chargingPoints || [];
 
@@ -152,7 +200,7 @@ const BookSlot = ({ route }) => {
 
     // Initiate Payment
     try {
-      const payRes = await axios.post("http://10.101.230.244:5000/beckn/initiate-payment", {
+      const payRes = await axios.post("http://10.228.228.244:5000/beckn/initiate-payment", {
         bill: {
           amount,
           userId,
@@ -170,7 +218,7 @@ const BookSlot = ({ route }) => {
       setTransactionId(payRes.data.message.transaction_id);
 
       // Confirm payment
-      const confirmRes = await axios.post("http://10.101.230.244:5000/beckn/confirm-payment", {
+      const confirmRes = await axios.post("http://10.228.228.244:5000/beckn/confirm-payment", {
         transactionId: payRes.data.message.transaction_id
       });
 
@@ -197,7 +245,7 @@ const BookSlot = ({ route }) => {
         }
       };
 
-      await fetch('http://10.101.230.244:5000/beckn/confirm', {
+      await fetch('http://10.228.228.244:5000/beckn/confirm', {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(bookingPayload)
@@ -258,9 +306,11 @@ const BookSlot = ({ route }) => {
             <Text style={styles.buttonText}>BOOK SLOT</Text>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity style={[styles.button, { backgroundColor: '#0066cc' }]} onPress={confirmBooking}>
-            <Text style={styles.buttonText}>CONFIRM BOOKING</Text>
-          </TouchableOpacity>
+          //confirmBooking
+<TouchableOpacity style={[styles.button, { backgroundColor: '#0066cc' }]} onPress={confirmBooking}>
+  <Text style={styles.buttonText}>CONFIRM BOOKING</Text>
+</TouchableOpacity>
+
         )}
       </View>
 

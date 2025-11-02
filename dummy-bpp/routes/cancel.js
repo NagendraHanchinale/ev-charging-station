@@ -46,7 +46,7 @@ router.post("/", async (req, res) => {
     });
 
     // Send back to BAP consumer
-    await axios.post("http://10.101.230.244:4001/beckn/on_cancel", responsePayload);
+    await axios.post("http://10.228.228.244:4001/beckn/on_cancel", responsePayload);
     res.status(200).json({ message: "Slot released and ACK sent" });
   } catch (err) {
     console.error("on_cancel error:", err.message);

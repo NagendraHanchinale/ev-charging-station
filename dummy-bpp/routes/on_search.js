@@ -48,7 +48,7 @@ router.post('/on_search', async (req, res) => {
     console.log("✅ Found `${filteredStations.length}` matching stations");
 
     // Send to BAP callback
-    await axios.post('http://10.101.230.244:5000/beckn/on_search_callback', {
+    await axios.post('http://10.228.228.244:5000/beckn/on_search_callback', {
       stations: filteredStations,
     });
 

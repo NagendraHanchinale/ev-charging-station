@@ -56,9 +56,9 @@ const SearchSection = ({ stations, onResults, onLoading }) => {
       };
 
       console.log('📤 Sending payload:', payload);
-      await axios.post('http://10.101.230.244:5000/beckn/search', payload);
+      await axios.post('http://10.228.228.244:5000/beckn/search', payload);
 
-      const response = await axios.get('http://10.101.230.244:5000/beckn/get_latest');
+      const response = await axios.get('http://10.228.228.244:5000/beckn/get_latest');
       onResults(response.data.stations || []);
     } catch (err) {
       console.error('❌ Beckn Search Error:', err.message);
